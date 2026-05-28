@@ -151,11 +151,26 @@ function loadModel(event) {
 
   };
 
-  if (ext === "stl" || ext === "glb") {
-    reader.readAsArrayBuffer(file);
-  } else {
-    reader.readAsText(file);
-  }
+if (
+  ext === "stl" ||
+  ext === "glb"
+) {
+
+  reader.readAsArrayBuffer(file);
+
+}
+
+else if (ext === "gltf") {
+
+  reader.readAsText(file);
+
+}
+
+else {
+
+  reader.readAsText(file);
+
+}
 
 }
 
