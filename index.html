@@ -24,10 +24,19 @@
     <canvas id="canvas"></canvas>
 
     <div id="uploadBox">
-      <input type="file" id="fileInput"
-      accept=".obj,.stl,.glb,.gltf">
+
+      <label for="fileInput" id="importButton">
+        IMPORT MODEL
+      </label>
+
+      <input
+        type="file"
+        id="fileInput"
+        accept=".obj,.stl,.glb,.gltf"
+        hidden
+      >
+
     </div>
-  </div>
 
   <div id="outputPanel">
 
