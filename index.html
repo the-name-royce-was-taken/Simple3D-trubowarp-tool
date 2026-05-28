@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TurboWarp Model Converter</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<div id="container">
+
+  <div id="viewer">
+    <canvas id="canvas"></canvas>
+
+    <div id="uploadBox">
+      <input type="file" id="fileInput"
+      accept=".obj,.stl,.glb,.gltf">
+    </div>
+  </div>
+
+  <div id="outputPanel">
+
+    <div id="placeholder">
+      Import a 3D model
+    </div>
+
+    <div id="lists" hidden>
+
+      <h2>X</h2>
+      <textarea id="xOut"></textarea>
+
+      <h2>Y</h2>
+      <textarea id="yOut"></textarea>
+
+      <h2>Z</h2>
+      <textarea id="zOut"></textarea>
+
+      <h2>U</h2>
+      <textarea id="uOut"></textarea>
+
+      <h2>V</h2>
+      <textarea id="vOut"></textarea>
+
+      <h2>W</h2>
+      <textarea id="wOut"></textarea>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
