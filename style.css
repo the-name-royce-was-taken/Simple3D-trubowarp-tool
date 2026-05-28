@@ -3,9 +3,20 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #111;
+
+  background:
+    radial-gradient(circle at top, #1b1b1b, #0a0a0a);
+
   color: white;
-  font-family: Arial;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 #container {
@@ -14,11 +25,26 @@ html, body {
   height: 100%;
 }
 
+/* =========================
+   LEFT VIEWER
+========================= */
+
 #viewer {
   width: 50%;
   height: 100%;
   position: relative;
-  background: black;
+
+  background:
+    linear-gradient(
+      180deg,
+      #111,
+      #050505
+    );
+
+  border-right:
+    2px solid rgba(255,255,255,0.05);
+
+  overflow: hidden;
 }
 
 #canvas {
@@ -27,98 +53,278 @@ html, body {
   display: block;
 }
 
+/* subtle grid background */
+
+#viewer::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+  pointer-events: none;
+}
+
+/* =========================
+   IMPORT BUTTON
+========================= */
+
 #uploadBox {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
+
+  top: 24px;
+  left: 24px;
+
+  z-index: 20;
 }
 
 #importButton {
 
-  display: inline-block;
+  display: inline-flex;
 
-  padding: 14px 26px;
+  align-items: center;
 
-  background: linear-gradient(
-    135deg,
-    #00ff99,
-    #00ccff
-  );
+  gap: 10px;
+
+  padding:
+    14px 28px;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00ff99,
+      #00ccff
+    );
 
   color: black;
 
-  font-weight: bold;
+  font-weight: 800;
 
-  font-size: 16px;
+  font-size: 15px;
 
-  border-radius: 14px;
+  letter-spacing: 1px;
 
   cursor: pointer;
 
   user-select: none;
 
-  box-shadow:
-    0 0 20px rgba(0,255,153,0.4),
-    0 0 40px rgba(0,204,255,0.2);
-
   transition:
-    transform 0.15s,
-    box-shadow 0.2s,
-    opacity 0.2s;
+    transform 0.15s ease,
+    box-shadow 0.25s ease,
+    opacity 0.2s ease;
 
+  box-shadow:
+    0 0 18px rgba(0,255,153,0.45),
+    0 0 40px rgba(0,204,255,0.18);
+
+  backdrop-filter: blur(10px);
+}
+
+#importButton::before {
+  content: "📦";
+  font-size: 18px;
 }
 
 #importButton:hover {
 
-  transform: scale(1.05);
+  transform:
+    translateY(-2px)
+    scale(1.04);
 
   box-shadow:
     0 0 30px rgba(0,255,153,0.7),
-    0 0 60px rgba(0,204,255,0.35);
-
+    0 0 70px rgba(0,204,255,0.35);
 }
 
 #importButton:active {
 
-  transform: scale(0.96);
+  transform:
+    scale(0.96);
 
+  opacity: 0.85;
 }
 
-#importButton::before {
-
-  content: "📦 ";
-
-}
+/* =========================
+   RIGHT PANEL
+========================= */
 
 #outputPanel {
+
   width: 50%;
   height: 100%;
+
   overflow-y: auto;
-  background: #1a1a1a;
-  padding: 20px;
-  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #181818,
+      #101010
+    );
+
+  padding: 28px;
 }
 
-textarea {
+/* custom scrollbar */
+
+#outputPanel::-webkit-scrollbar {
+  width: 10px;
+}
+
+#outputPanel::-webkit-scrollbar-track {
+  background: #111;
+}
+
+#outputPanel::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 20px;
+}
+
+#outputPanel::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+#placeholder {
+
   width: 100%;
-  height: 120px;
-  margin-bottom: 20px;
-  background: #222;
-  color: #00ff99;
-  border: 1px solid #444;
-  resize: vertical;
-  padding: 10px;
-  box-sizing: border-box;
-  font-family: monospace;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  opacity: 0.25;
+
+  letter-spacing: 2px;
+}
+
+/* =========================
+   LIST CONTAINERS
+========================= */
+
+#lists {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
 }
 
 h2 {
+
+  margin: 0;
+
   margin-top: 10px;
+
+  font-size: 18px;
+
+  letter-spacing: 1px;
+
+  color: #00ffaa;
 }
 
-#placeholder {
-  font-size: 24px;
-  opacity: 0.5;
-  margin-top: 40px;
+/* =========================
+   TEXTAREAS
+========================= */
+
+textarea {
+
+  width: 100%;
+
+  min-height: 140px;
+
+  resize: vertical;
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  color:
+    #00ff99;
+
+  padding: 14px;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  font-family:
+    Consolas,
+    monospace;
+
+  outline: none;
+
+  transition:
+    border 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
+}
+
+textarea:focus {
+
+  border:
+    1px solid rgba(0,255,153,0.5);
+
+  box-shadow:
+    0 0 20px rgba(0,255,153,0.15);
+
+  transform:
+    translateY(-1px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+  #container {
+    flex-direction: column;
+  }
+
+  #viewer,
+  #outputPanel {
+    width: 100%;
+    height: 50%;
+  }
+
+  #placeholder {
+    font-size: 24px;
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+
 }
