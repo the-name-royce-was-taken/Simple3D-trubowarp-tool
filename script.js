@@ -245,14 +245,6 @@ function generateUVs(geometry) {
 
 function exportLists(geometry) {
 
-  document
-  .getElementById("placeholder")
-  .hidden = true;
-
-  document
-  .getElementById("lists")
-  .hidden = false;
-
   const pos =
     geometry.attributes.position;
 
