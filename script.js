@@ -161,6 +161,8 @@ function loadModel(event) {
 
 function createMesh(geometry) {
 
+  console.log("Creating mesh...");
+
   geometry.computeVertexNormals();
 
   if (!geometry.attributes.uv) {
@@ -168,8 +170,7 @@ function createMesh(geometry) {
   }
 
   const material = new THREE.MeshStandardMaterial({
-    color: 0xcccccc,
-    wireframe: false
+    color: 0xcccccc
   });
 
   currentMesh = new THREE.Mesh(
@@ -178,6 +179,29 @@ function createMesh(geometry) {
   );
 
   scene.add(currentMesh);
+
+  /* =========================
+     HIDE PLACEHOLDER
+  ========================= */
+
+  const placeholder =
+    document.getElementById("placeholder");
+
+  if (placeholder) {
+    placeholder.style.display = "none";
+  }
+
+  /* =========================
+     SHOW LISTS
+  ========================= */
+
+  const lists =
+    document.getElementById("lists");
+
+  if (lists) {
+    lists.hidden = false;
+    lists.style.display = "block";
+  }
 
   exportLists(geometry);
 
